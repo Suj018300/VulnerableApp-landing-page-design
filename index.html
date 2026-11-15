@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VulnerableApp – Benchmark your security scanner against a known target</title>
+<meta name="description" content="OWASP VulnerableApp: reproducible vulnerability labs for testing and benchmarking SAST & DAST scanners.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.theme||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="logo" viewBox="0 0 25 30"><defs><linearGradient id="lg" x1="24.5" y1="5.3" x2="0" y2="30" gradientUnits="userSpaceOnUse"><stop offset=".33" stop-color="#FF6600"/><stop offset="1" stop-color="#FFA600"/></linearGradient><clipPath id="lc"><rect width="24.5" height="30"/></clipPath></defs><g clip-path="url(#lc)"><path d="M12.27.12 0 5.58v8.18c0 7.57 5.24 14.65 12.27 16.37 7.04-1.72 12.27-8.8 12.27-16.37V5.58z" fill="url(#lg)"/><path d="m20.64 24.67-5-8.45-4.94-1.35 4.27-.05-2.12-3.81-6.75 12.15L-3.72 9.94l3.54-2.16 6.28 10.57 6.75-11.35z" fill="#fff"/></g></symbol>
+<symbol id="gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .33C5.37.33 0 5.6 0 12.12c0 5.2 3.44 9.63 8.21 11.2.6.1.79-.26.79-.57v-2c-3.32.7-4.03-1.58-4.03-1.58-.55-1.37-1.33-1.73-1.33-1.73-1.09-.73.08-.7.08-.7 1.2.08 1.84 1.21 1.84 1.21 1.04 1.79 2.8 1.27 3.49.98.1-.77.42-1.29.76-1.59-2.66-.3-5.46-1.31-5.46-5.8 0-1.31.46-2.36 1.24-3.2-.12-.3-.54-1.52.12-3.12 0 0 1-.32 3.3 1.2a11.5 11.5 0 0 1 6 0c2.29-1.52 3.3-1.2 3.3-1.2.66 1.6.24 2.82.12 3.12.78.84 1.24 1.89 1.24 3.2 0 4.5-2.81 5.5-5.48 5.79.43.37.83 1.09.83 2.19v3.23c0 .32.19.7.8.57A11.8 11.8 0 0 0 24 12.12C24 5.6 18.63.33 12 .33z"/></symbol>
+<symbol id="yt" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6.1 5h11.7C20.1 5 22 6.85 22 9.12v5.76C22 17.15 20.1 19 17.8 19H6.1C3.9 19 2 17.15 2 14.88V9.12C2 6.85 3.9 5 6.1 5zm3.4 4.35v5.3l5.5-2.65z"/></symbol>
+<symbol id="tw" viewBox="0 0 24 24"><path fill="currentColor" d="M18.2 3h3.1l-6.8 7.7L22.5 21h-6.3l-4.9-6.4L5.6 21H2.5l7.2-8.3L2 3h6.4l4.4 5.9zm-1.1 16.2h1.7L7.3 4.7H5.5z"/></symbol>
+<symbol id="cp" viewBox="0 0 22 22"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6.3" y="6.3" width="12.5" height="12.5" rx="2.4"/><path d="M3.6 15a2 2 0 0 1-.9-1.6V4.5c0-1 .8-1.8 1.8-1.8h8.9c.7 0 1.1.3 1.4.9"/></g></symbol>
+<symbol id="db" viewBox="0 0 24 24"><g fill="none" stroke="#EA5803" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.7-4 3-9 3s-9-1.3-9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></g></symbol>
+<symbol id="tm" viewBox="0 0 24 24"><path d="M12 19h8M4 17l6-6-6-6" fill="none" stroke="#EA5803" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="ky" viewBox="0 0 24 24"><g fill="none" stroke="#EA5803" stroke-width="2" stroke-linecap="round"><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/><circle cx="7.5" cy="15.5" r="5.5"/></g></symbol>
+<symbol id="sc" viewBox="0 0 24 24"><g fill="none" stroke="#EA5804" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.9 11.1c0 4.9-3.5 9.5-8.4 10.8-.3.1-.7.1-1 0C6.6 20.6 3.1 16 3.1 11.1V6.7c0-.8.6-1.7 1.4-2.1L10 2.4c1.3-.5 2.7-.5 4 0l5.5 2.2c.8.3 1.4 1.2 1.4 2.1z"/><circle cx="12" cy="10.5" r="2"/><path d="M12 12.5v3"/></g></symbol>
+<symbol id="ed" viewBox="0 0 24 24"><g fill="none" stroke="#EA5804" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-4 10 4-10 4z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M22 9v6"/></g></symbol>
+<symbol id="ts" viewBox="0 0 24 24"><g fill="none" stroke="#EA5804" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 12V4.5c0-.8-.7-1.5-1.5-1.5h-11C3.7 3 3 3.7 3 4.5v13c0 .8.7 1.5 1.5 1.5H9M7 7.5h6M7 11h3"/><circle cx="16" cy="17" r="4"/><path d="m19 20 2.5 2.5"/></g></symbol>
+</svg>
+
+<nav id="nav">
+ <a class="brand" href="#"><svg width="25" height="30"><use href="#logo"/></svg><span class="g">VulnerableApp</span></a>
+ <div class="links"><a href="#get-started">Learn</a><a href="#">Docs</a><a href="#">Community</a><a href="#">Leaderboard</a><a href="#">About</a></div>
+ <div class="acts">
+  <span class="owasp" role="img" aria-label="OWASP"></span>
+  <button class="b t" id="theme" aria-label="Toggle light/dark mode"><svg class="sun" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.37 5.51A7.1 7.1 0 0 0 9.1 7.5c0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27A7 7 0 0 1 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3a9 9 0 1 0 8.9 7.64A5.4 5.4 0 0 1 13.36 3.1 9 9 0 0 0 12 3z"/></svg></button>
+  <a class="b gh" href="https://github.com/SasanLabs/VulnerableApp"><svg width="24" height="24"><use href="#gh"/></svg><span>GitHub</span></a>
+  <a class="b p" href="#">Live labs</a>
+  <button class="b t menu" id="menu" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+ </div>
+</nav>
+
+<main>
+<i class="glow" style="width:846px;height:98px;left:calc(50% - 720px + -415px);top:-34px;background:var(--gh);filter:blur(161px);transform:rotate(30deg)"></i>
+<i class="glow" style="width:190px;height:290px;left:calc(50% - 720px + 1275px);top:310px;background:var(--gv);filter:blur(146px);transform:rotate(25deg)"></i>
+<i class="glow" style="width:140px;height:120px;left:calc(50% - 720px + 110px);top:648px;background:var(--gv);filter:blur(128px);transform:rotate(0deg)"></i>
+<i class="glow" style="width:380px;height:150px;left:calc(50% - 720px + 1071px);top:1949px;background:var(--gv);filter:blur(184px);transform:rotate(0deg)"></i>
+<i class="glow" style="width:380px;height:150px;left:calc(50% - 720px + -263px);top:2429px;background:var(--gb);filter:blur(184px);transform:rotate(0deg)"></i>
+<i class="glow" style="width:250px;height:105px;left:calc(50% - 720px + -156px);top:3144px;background:var(--gv);filter:blur(95px);transform:rotate(0deg)"></i>
+<i class="glow" style="width:846px;height:54px;left:calc(50% - 720px + 1007px);top:3369px;background:var(--gr);filter:blur(62px);transform:rotate(-37deg)"></i>
+
+<header class="hero">
+ <div><h1 class="g">Benchmark your security scanner against a known target</h1>
+ <p class="lead">A OWASP VulnerableApp platform that helps you test, benchmark, and improve security scanners with reproducible vulnerability scenarios. Get started with Multi-Stack vulnerability Labs, SAST &amp; DAST benchmarking and many more.</p></div>
+ <div class="cta"><a class="hb" href="#">Open live labs</a><a class="hb s" href="https://github.com/SasanLabs/VulnerableApp">View on GitHub</a></div>
+ <div class="meta"><span>OWASP project</span><i></i><span>Open source</span><i></i><span>Community Driven</span><i></i><span>No signup required</span></div>
+ <p class="note">For security reasons, the live lab contains only a subset of available vulnerabilities.</p>
+ <div class="warn"><b><svg width="16" height="16" viewBox="0 0 16 16" fill="#F7A806"><path fill-rule="evenodd" d="M2.34 11.33 7.05 3.48a1.1 1.1 0 0 1 1.9 0l4.7 7.85a1.1 1.1 0 0 1-.95 1.67H3.3a1.1 1.1 0 0 1-.96-1.67zM8 6a.67.67 0 0 1 .67.67v2a.67.67 0 1 1-1.34 0v-2A.67.67 0 0 1 8 6zm-.67 4.67a.67.67 0 0 1 .67-.67h.01a.67.67 0 1 1 0 1.33H8a.67.67 0 0 1-.67-.66z"/></svg>Intentionally insecure:</b><span>Run in an isolated environment only. Never deploy on a public network.</span></div>
+</header>
+
+<section class="sec" id="arch" style="margin-top:0"><div class="panel">
+ <h2 class="g">OWASP VulnerableApp Architecture</h2>
+ <div class="box">
+  <div class="fac"><div style="display:flex;flex-direction:column;gap:12px"><b>VulnerableApp-Facade</b><em>(Unified UI + Gateway Layer)</em></div><p>A gateway that routes requests to each lab and provides a common UI &amp; API schema across all backends. It contains no vulnerabilities itself.</p></div>
+  <div class="row"><div class="track" id="track">
+   <article class="ac" style="--c:#ea5803"><span class="tile">Java</span><div class="at"><b>VulnerableApp</b><span>(Java / Spring)</span></div><p>The core lab. Intentionally vulnerable Java modules for scanner testing, security research, and training.</p></article>
+   <article class="ac" style="--c:#d93230"><span class="tile">JSP</span><div class="at"><b>VulnerableApp-JSP</b><span>(JSP Security Lab)</span></div><p>JSP-based scenarios for evaluating web scanners, payloads, and manual testing techniques.</p></article>
+   <article class="ac" style="--c:#3d6ef2"><span class="tile">PHP</span><div class="at"><b>VulnerableApp-PHP</b><span>(PHP Security Lab)</span></div><p>PHP applications covering modern web vulnerability classes.</p></article>
+   <article class="ac" style="--c:#cb30e0"><span class="tile">LLM</span><div class="at"><b>LLMForge</b><span>(AI / LLM Security)</span></div><p>A lab for testing, evaluating, and red-teaming LLM and prompt-based systems.</p></article>
+  </div><button class="nx" id="next" aria-label="Scroll labs"><svg width="39" height="39" viewBox="0 0 39 39" fill="none"><path d="M15 12l10 7-10 8" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+ </div>
+</div></section>
+
+<section class="sec" id="features"><div class="hd"><span class="eyebrow">Key Features</span><h2 class="g">What's included</h2></div>
+ <div class="feat">
+  <div><h3>Multi-stack vulnerability labs</h3><p>Java, JSP, PHP, and AI/LLM security targets behind one gateway.</p></div>
+  <div><h3>Machine-readable ground truth</h3><p>Every vulnerability exposes its expected findings through a documented endpoint, so scanner results can be scored automatically.</p></div>
+  <div><h3>Scanner and payload benchmarking</h3><p>Evaluate SAST and DAST tools, payloads, and detection rules against known vulnerable scenarios.</p></div>
+  <div><h3>Modular vulnerability development</h3><p>New vulnerability types are self-contained modules; add one without touching the rest of the stack.</p></div>
+  <div><h3>Progressive learning path</h3><p>A step-by-step lab structure with multiple difficulty levels for learners, students, and security newcomers.</p></div>
+  <div><h3>Open source</h3><p>Apache 2.0 licensed, community-maintained under the OWASP Foundation.</p></div>
+ </div></section>
+
+<section class="sec cats" id="categories"><div class="hd"><h2 class="g">20+ vulnerability categories, and growing</h2><p>From SQL Injection to cache poisoning, each with escalating difficulty levels designed specifically for rigorous security scanner benchmarking.</p></div>
+ <div id="cat" tabindex="0" aria-label="Vulnerability categories"></div></section>
+
+<section class="sec" id="get-started"><div class="hd"><span class="eyebrow">get started</span><h2 class="g">Two ways to run it</h2><p>Run the full ecosystem with Docker Compose, or a single JAR with no dependency beyond Java.<br>Both run locally with one command.</p></div>
+ <div class="two">
+  <article class="gs"><div><h3>Docker Compose — full stack</h3><small>Best for: benchmarking and realistic scans</small></div>
+   <p>Runs the complete stack: the core Java app, extra vulnerable services (JSP, PHP, LLMForge), and the modern React UI.</p>
+   <div class="code"><code>docker-compose pull &amp;&amp; docker-compose up</code><button class="cp" data-copy="docker-compose pull && docker-compose up" aria-label="Copy command"><svg width="22" height="22"><use href="#cp"/></svg></button></div>
+   <ul><li>Available at http://localhost</li><li>This method will run the latest unreleased version. If you want to run the latest released version, please use docker&nbsp;<b style="font-weight:600">latest</b>&nbsp;tag.</li></ul></article>
+  <article class="gs"><div><h3>Standalone JAR - minimal setup</h3><small>Best for: development, debugging and fast setup</small></div>
+   <p>Run just the application with the legacy UI.<br>No Docker needed - Only java.</p>
+   <div class="code"><code>java -jar VulnerableApp-*.jar</code><button class="cp" data-copy="java -jar VulnerableApp-*.jar" aria-label="Copy command"><svg width="22" height="22"><use href="#cp"/></svg></button></div>
+   <ul><li>Download the JAR from the <a href="#">releases page</a></li><li>Run it - the app starts in under a minute</li><li class="l">Open http://localhost:9090/VulnerableApp</li><li class="l">Step through vulnerability code in your IDE</li></ul></article>
+ </div></section>
+
+<section class="sec" id="use-cases"><div class="hd"><span class="eyebrow">USE CASES</span><h2 class="g">Built for Security Testing. Designed for Learning.</h2><p>Whether you're building scanners, testing defenses, or teaching application security, VulnerableApp provides a controlled environment to explore real vulnerabilities and measure results.</p></div>
+ <div class="uc">
+  <article class="u"><span class="ib"><svg width="24" height="24"><use href="#ts"/></svg></span><div><h3>Scanner developers</h3><p>If you build or contribute to ZAP, Burp extensions, or your own DAST/SAST engine, validate every scan rule against a known, stable target. Write the vulnerability first, then the rule that detects it — test-driven development for security tooling.</p></div></article>
+  <article class="u"><span class="ib"><svg width="24" height="24"><use href="#sc"/></svg></span><div><h3>Security engineers &amp; AppSec teams</h3><p>Use VulnerableApp as a fixed reference point for scanners running in CI/CD. Regression-test the pipeline to catch a tool upgrade, config change, or new release that silently stops detecting what it used to.</p></div></article>
+  <article class="u"><span class="ib"><svg width="24" height="24"><use href="#ed"/></svg></span><div><h3>Educators, students &amp; researchers</h3><p>A documented, versioned bank of vulnerabilities with escalating difficulty levels — the same lab for every student, the same baseline for every paper.</p></div></article>
+ </div></section>
+</main>
+
+<footer>
+ <div class="cols">
+  <div class="fb"><div><a class="brand" href="#"><svg width="25" height="30"><use href="#logo"/></svg><span class="g">VulnerableApp</span></a><p>A hands-on platform for learning, experimenting with, and benchmarking application security vulnerabilities.</p></div>
+   <div class="soc"><a href="#" aria-label="YouTube"><svg width="24" height="24"><use href="#yt"/></svg></a><a href="#" aria-label="Twitter"><svg width="24" height="24"><use href="#tw"/></svg></a><a href="https://github.com/SasanLabs/VulnerableApp" aria-label="GitHub"><svg width="24" height="24"><use href="#gh"/></svg></a></div></div>
+  <div class="fm">
+   <div><b>Explore</b><a href="#">Challenges</a><a href="#">Vulnerabilities</a><a href="#">Benchmarking</a><a href="#">Other Features</a></div>
+   <div><b>Learn</b><a href="#">OWASP Cheat Sheets</a><a href="#">Documentation</a><a href="#">Getting Started</a><a href="#">Security Resources</a></div>
+   <div><b>Community</b><a href="#">GitHub</a><a href="#">Contribute</a><a href="#">Report and Issue</a><a href="#">Discussions</a></div>
+   <div><b>Sasanlabs</b><a href="#">About SasanLabs</a><a href="#">GitHub</a></div>
+  </div>
+ </div>
+ <hr>
+ <div class="bot"><span>© 2026 SasanLabs. Open source and built for the security community.</span><span class="owasp" role="img" aria-label="OWASP"></span></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
