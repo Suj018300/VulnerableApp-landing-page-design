@@ -12,6 +12,7 @@ Repository: https://github.com/SasanLabs/Owasp-VulnerableApp-Website
 - Hover animations on buttons and cards, a swipeable category list and copy-to-clipboard command boxes
 - Decorative background glows matching the Figma design
 
+
 ## Tech stack
 
 HTML5, CSS3 (custom properties, grid, flexbox) and vanilla JavaScript. No framework, dependencies or build step. The Inter font loads from Google Fonts.
